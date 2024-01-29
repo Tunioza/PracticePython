@@ -1,10 +1,28 @@
 # 20_Element_Search
 
 
-def searching(list, x):
-    return x in list
+def find(ordered_list, element_to_find):
+    start_index = 1
+    end_index = len(ordered_list) - 1
 
-lista = [1,2,3,4,5,6,7,8,9,10]
-x = 11
+    while True:
+        middle_index = (end_index - start_index) / 2
 
-print(searching(lista,x))
+        if middle_index < start_index or middle_index > end_index or middle_index < 0:
+            return False
+
+        middle_element = ordered_list[middle_index]
+        if middle_element == element_to_find:
+            return True
+        elif middle_element < element_to_find:
+            end_index = middle_index
+        else:
+            start_index = middle_index
+
+
+if __name__ == "__main__":
+    l = [2, 4, 6, 8, 10]
+    print(find(l, 5))  # prints False
+    print(find(l, 10))  # prints True
+    print(find(l, -1))  # prints False
+    print(find(l, 2))  # prints True
